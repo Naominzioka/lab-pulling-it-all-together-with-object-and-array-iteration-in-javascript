@@ -7,11 +7,13 @@
     "test": "test"
   },
   "scripts": {
-    "test": "mocha --timeout 5000 -R mocha-multi --reporter-options spec=-,json=.results.json"
+    "test": "mocha --timeout 5000 -R mocha-multi --reporter-options spec=-,json=.results.json",
+    "lint": "eslint \"**/*.js\"",
+    "lint:fix": "eslint --fix \"**/*.js\""
   },
   "repository": {
     "type": "git",
-    "url": "git+git@github.com:learn-co-curriculum/lab-pulling-it-all-together-with-object-and-array-iteration-in-javascript.git"
+    "url": "git+ssh://git@github.com/learn-co-curriculum/lab-pulling-it-all-together-with-object-and-array-iteration-in-javascript.git"
   },
   "keywords": [
     "flatiron school",
@@ -28,17 +30,20 @@
   },
   "homepage": "https://github.com/learn-co-curriculum/lab-pulling-it-all-together-with-object-and-array-iteration-in-javascript#readme",
   "devDependencies": {
+    "eslint": "^8.47.0",
     "babel-core": "6.26.3",
     "babel-preset-env": "1.7.0",
     "chai": "4.1.2",
+    "chai-spies-next": "^0.9.3",
     "file-system": "2.2.2",
+    "globals": "^16.5.0",
     "jsdom": "9.2.1",
     "mocha": "5.2.0",
     "mocha-jsdom": "~1.1.0",
-    "mocha-multi": "1.0.1",
-    "chai-spies-next": "^0.9.3"
+    "mocha-multi": "1.0.1"
   },
   "dependencies": {
     "sinon": "^7.3.2"
-  }
+  },
+  "type": "commonjs"
 }

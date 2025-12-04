@@ -114,3 +114,146 @@ function gameObject() {
         },
     };
 }
+
+function numPointsScored(playerName) {
+    const gameObj = gameObject()
+    const homePlayers = gameObj.home.players
+    const awayPlayers = gameObj.away.players
+
+    // first search home players
+    for (const player in homePlayers) {
+        if (player === playerName) {
+            return homePlayers[player].points
+        }
+    }
+    // search away players
+    for (const player in awayPlayers) {
+        if (player === playerName) {
+            return awayPlayers[player].points
+        }
+    }
+
+    return null // null means not found
+}
+
+//const playerName = "Jeff Adrien"
+//console.log(`Points scored by ${playerName}: ${numPointsScored(playerName)}`)
+
+function shoeSize(playerName) {
+    const gameObj = gameObject()
+    const homePlayers = gameObj.home.players
+    const awayPlayers = gameObj.away.players
+
+    // first search home players
+    for (const player in homePlayers) {
+        if (player === playerName) {
+            return homePlayers[player].shoe
+        }
+    }
+    // search away players
+    for (const player in awayPlayers) {
+        if (player === playerName) {
+            return awayPlayers[player].shoe
+        }
+    }
+
+    return null
+}
+//const playerName = "Jeff Adrien";
+//console.log(shoeSize(playerName))
+
+function teamColors(teamName) {
+    const gameObj = gameObject();
+    if (gameObj.home.teamName === teamName) {
+        return gameObj.home.colors
+    }
+
+    if (gameObj.away.teamName === teamName) {
+        return gameObj.away.colors
+    }
+    return null
+
+}
+
+//const teamName = "Charlotte Hornets"
+//console.log(`The team playing is ${teamColors(teamName)}`)
+
+function teamNames() {
+    const gameObj = gameObject();
+    const awayPlayers = gameObj.away.teamName;
+    const homePlayers = gameObj.home.teamName;
+    return [homePlayers, awayPlayers]
+}
+
+//console.log(teamNames());
+function playerNumbers(teamName) {
+    const gameObj = gameObject();
+    const teamNumbers = []
+    let matchingTeam
+    if (gameObj.home.teamName === teamName) {
+        matchingTeam = gameObj.home
+    } else {
+        matchingTeam = gameObj.away
+    }
+
+    const players = matchingTeam.players
+
+    for (const player of Object.values(players)) {
+        teamNumbers.push(player.number)
+    }
+
+    return teamNumbers
+}
+
+// console.log(playerNumbers('Charlotte Hornets'))
+function playerStats(playerName) {
+    const gameObj = gameObject();
+    //we have the name of the player but we dont know which team they belong to
+    //so we will check both teams
+    const homePlayers = gameObj.home.players
+    const awayPlayers = gameObj.away.players
+    //we will first check the home team and if we find our player no need to check the away team
+
+    for (const pName in homePlayers) {
+        //check if the player's name is strictly equal to the playername we were given
+        if (playerName === pName) {
+            return homePlayers[playerName]
+        }
+    }
+    //checking away team since the player is not in home team
+
+    for (const pName in awayPlayers) {
+        if (playerName === pName) {
+            return awayPlayers[playerName]
+        }
+    }
+}
+//console.log(playerStats("Brendan Hayword"));
+
+function bigShoeRebounds() {
+    const gameObj = gameObject()
+   let largestShoe = 0;
+   let rebounds = 0;
+
+    const homePlayers = gameObj.home.players
+    const awayPlayers = gameObj.away.players
+
+    //checking all shoe sizes first
+ for (const playerName in homePlayers) {
+    const playerStats = homePlayers[playerName];
+    if (playerStats.shoe > largestShoe) {
+        largestShoe = playerStats.shoe;
+        rebounds = playerStats.rebounds;
+    }
+ }
+ for (const playerName in awayPlayers) {
+    const playerStats = awayPlayers[playerName];
+    if (playerStats.shoe > largestShoe) {
+        largestShoe = playerStats.shoe;
+        rebounds = playerStats.rebounds;
+    }
+ }
+return rebounds    
+}
+//console.log(bigShoeRebounds());
+
